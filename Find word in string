@@ -1,0 +1,39 @@
+#include <iostream>
+
+
+bool it_match(std::string text, std::string word, int startPos) {
+	for (int i = 0; i < word.length(); i++) {
+		if (i + startPos >= text.length() || word[i] != text[i + startPos]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+int find(std::string text, std::string word) {
+	for (int startPos = 0; startPos < text.length(); startPos++) {
+		if (it_match(text, word, startPos)) {
+			return startPos;
+		}
+	}
+	return -1;
+}
+
+void found() {
+	std::cout << "Found!" << std::endl;
+}
+
+int main() {
+	std::string text, word;
+	std::cout << "Input text: ";
+	std::cin >> text;
+	std::cout << "input word: ";
+	std::cin >> word;
+
+	if (find(text, word) >= 0) {
+		found();
+	}
+	else {
+		std::cout << "Not found!" << std::endl;
+	}
+}
